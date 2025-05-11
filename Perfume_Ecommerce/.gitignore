@@ -363,3 +363,8 @@ MigrationBackup/
 FodyWeavers.xsd
 
 .vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
