@@ -100,6 +100,7 @@
             this.forgotButton.TabIndex = 6;
             this.forgotButton.Text = "Forgot Password";
             this.forgotButton.UseVisualStyleBackColor = true;
+            this.forgotButton.Click += new System.EventHandler(this.forgotButton_Click);
             // 
             // LoginPage
             // 

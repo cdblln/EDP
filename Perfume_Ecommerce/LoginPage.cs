@@ -83,5 +83,13 @@ namespace Register
                 }
             }
         }
+
+        private void forgotButton_Click(object sender, EventArgs e)
+        {
+            ForgotPassword secondForm = new ForgotPassword(); // Create instance of the ForgotPassword form
+            secondForm.Show(); // Show the ForgotPassword form
+            this.Hide(); // Hide the current form
+        }
+
     }
 }
