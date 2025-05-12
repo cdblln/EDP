@@ -91,5 +91,9 @@ namespace Register
             this.Hide(); // Hide the current form
         }
 
+        private void LoginPage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

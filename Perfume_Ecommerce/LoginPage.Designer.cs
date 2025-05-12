@@ -115,7 +115,8 @@
             this.Controls.Add(this.passTextBox);
             this.Controls.Add(this.emailTextbox);
             this.Name = "LoginPage";
-            this.Text = "Form1";
+            this.Text = "Log In";
+            this.Load += new System.EventHandler(this.LoginPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

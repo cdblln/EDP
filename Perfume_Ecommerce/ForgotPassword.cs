@@ -61,10 +61,10 @@ namespace Register
             };
 
             Label newPasswordLabel = new Label() { Text = "New Password:", Location = new Point(20, 20), Width = 100 };
-            TextBox newPasswordTextBox = new TextBox() { Location = new Point(130, 17), Width = 150, PasswordChar = '*' };
+            TextBox newPasswordTextBox = new TextBox() { Location = new Point(130, 17), Width = 150, PasswordChar = '●' };
 
             Label confirmPasswordLabel = new Label() { Text = "Confirm Password:", Location = new Point(20, 50), Width = 100 };
-            TextBox confirmPasswordTextBox = new TextBox() { Location = new Point(130, 47), Width = 150, PasswordChar = '*' };
+            TextBox confirmPasswordTextBox = new TextBox() { Location = new Point(130, 47), Width = 150, PasswordChar = '●' };
 
             Button okButton = new Button() { Text = "OK", Location = new Point(100, 90), DialogResult = DialogResult.OK };
             Button cancelButton = new Button() { Text = "Cancel", Location = new Point(190, 90), DialogResult = DialogResult.Cancel };
