@@ -25,10 +25,14 @@ namespace Register
             panelContent.Controls.Add(uc);
         }
 
-        private void btnSettings_Click(object sender, EventArgs e)
+        private void btnPerfume_Click(object sender, EventArgs e)
         {
-            //LoadUserControl(new SettingsControl());
+            panelContent.Controls.Clear();
+            Perfumes uc = new Perfumes();  // Use Perfumes instead of Perfume
+            uc.Dock = DockStyle.Fill;
+            panelContent.Controls.Add(uc);
         }
+
 
         private void btnProfile_Click(object sender, EventArgs e)
         {

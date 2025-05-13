@@ -23,6 +23,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.addUser = new System.Windows.Forms.Button();
             this.editUser = new System.Windows.Forms.Button();
+            this.deleteUser = new System.Windows.Forms.Button();
+            this.generateExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,7 +189,7 @@
             // 
             // editUser
             // 
-            this.editUser.Location = new System.Drawing.Point(712, 405);
+            this.editUser.Location = new System.Drawing.Point(645, 405);
             this.editUser.Name = "editUser";
             this.editUser.Size = new System.Drawing.Size(75, 23);
             this.editUser.TabIndex = 18;
@@ -195,9 +197,31 @@
             this.editUser.UseVisualStyleBackColor = true;
             this.editUser.Click += new System.EventHandler(this.editUser_Click);
             // 
+            // deleteUser
+            // 
+            this.deleteUser.Location = new System.Drawing.Point(737, 405);
+            this.deleteUser.Name = "deleteUser";
+            this.deleteUser.Size = new System.Drawing.Size(75, 23);
+            this.deleteUser.TabIndex = 19;
+            this.deleteUser.Text = "Delete User";
+            this.deleteUser.UseVisualStyleBackColor = true;
+            this.deleteUser.Click += new System.EventHandler(this.deleteUser_Click);
+            // 
+            // generateExcel
+            // 
+            this.generateExcel.Location = new System.Drawing.Point(26, 473);
+            this.generateExcel.Name = "generateExcel";
+            this.generateExcel.Size = new System.Drawing.Size(88, 23);
+            this.generateExcel.TabIndex = 20;
+            this.generateExcel.Text = "Save As Excel";
+            this.generateExcel.UseVisualStyleBackColor = true;
+            this.generateExcel.Click += new System.EventHandler(this.generateExcel_Click);
+            // 
             // Customers
             // 
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.generateExcel);
+            this.Controls.Add(this.deleteUser);
             this.Controls.Add(this.editUser);
             this.Controls.Add(this.addUser);
             this.Controls.Add(this.label8);
@@ -245,5 +269,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button addUser;
         private System.Windows.Forms.Button editUser;
+        private System.Windows.Forms.Button deleteUser;
+        private System.Windows.Forms.Button generateExcel;
     }
 }

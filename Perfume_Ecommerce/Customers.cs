@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.IO;
 
 namespace Register
 {
@@ -319,5 +320,99 @@ namespace Register
                 connection.Close();
             }
         }
+
+        private void deleteUser_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(email.Text))
+            {
+                MessageBox.Show("Please select a user to delete.");
+                return;
+            }
+
+            string selectedEmail = email.Text.Trim();
+
+            DialogResult confirm = MessageBox.Show(
+                $"Are you sure you want to delete the user with email: {selectedEmail}?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    connection.Open();
+                    string deleteQuery = "DELETE FROM customers WHERE email = @Email";
+                    using (MySqlCommand cmd = new MySqlCommand(deleteQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", selectedEmail);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("User deleted successfully.");
+                            ClearForm();
+                            RefreshTable();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No user was deleted. Please make sure a valid user is selected.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting user: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        private void generateExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Navigate to project root
+                string currentDir = AppDomain.CurrentDomain.BaseDirectory;
+                string projectRoot = Directory.GetParent(currentDir).Parent.Parent.Parent.FullName;
+
+                // Add timestamp to filename
+                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                string fileName = $"CustomerExport_{timestamp}.csv";
+
+                string filePath = Path.Combine(projectRoot, fileName);
+
+                using (StreamWriter writer = new StreamWriter(filePath, false, Encoding.UTF8))
+                {
+                    // Write headers
+                    writer.WriteLine("First Name,Last Name,Email,Gender");
+
+                    // Write each row from DataGridView
+                    foreach (DataGridViewRow row in dataGrid.Rows)
+                    {
+                        if (!row.IsNewRow)
+                        {
+                            string firstName = row.Cells["first_name"].Value?.ToString();
+                            string lastName = row.Cells["last_name"].Value?.ToString();
+                            string email = row.Cells["email"].Value?.ToString();
+                            string gender = row.Cells["gender"].Value?.ToString();
+
+                            writer.WriteLine($"{firstName},{lastName},{email},{gender}");
+                        }
+                    }
+                }
+
+                MessageBox.Show($"File saved successfully:\n{filePath}", "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error generating file: " + ex.Message, "Export Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
