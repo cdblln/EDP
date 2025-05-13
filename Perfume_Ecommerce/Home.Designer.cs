@@ -7,7 +7,7 @@
         private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Button btnPerfume;
-        private System.Windows.Forms.Button btnProfile;
+        private System.Windows.Forms.Button btnReview;
 
         protected override void Dispose(bool disposing)
         {
@@ -21,9 +21,9 @@
         private void InitializeComponent()
         {
             this.panelSidebar = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnProfile = new System.Windows.Forms.Button();
+            this.logoutBtn = new System.Windows.Forms.Button();
+            this.orderList = new System.Windows.Forms.Button();
+            this.btnReview = new System.Windows.Forms.Button();
             this.btnPerfume = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.panelContent = new System.Windows.Forms.Panel();
@@ -36,9 +36,9 @@
             // panelSidebar
             // 
             this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.panelSidebar.Controls.Add(this.button2);
-            this.panelSidebar.Controls.Add(this.button1);
-            this.panelSidebar.Controls.Add(this.btnProfile);
+            this.panelSidebar.Controls.Add(this.logoutBtn);
+            this.panelSidebar.Controls.Add(this.orderList);
+            this.panelSidebar.Controls.Add(this.btnReview);
             this.panelSidebar.Controls.Add(this.btnPerfume);
             this.panelSidebar.Controls.Add(this.btnDashboard);
             this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
@@ -47,45 +47,47 @@
             this.panelSidebar.Size = new System.Drawing.Size(200, 600);
             this.panelSidebar.TabIndex = 0;
             // 
-            // button2
+            // logoutBtn
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(0, 200);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 50);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Profile";
-            this.button2.UseVisualStyleBackColor = true;
+            this.logoutBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.logoutBtn.FlatAppearance.BorderSize = 0;
+            this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.logoutBtn.ForeColor = System.Drawing.Color.White;
+            this.logoutBtn.Location = new System.Drawing.Point(0, 200);
+            this.logoutBtn.Name = "logoutBtn";
+            this.logoutBtn.Size = new System.Drawing.Size(200, 50);
+            this.logoutBtn.TabIndex = 4;
+            this.logoutBtn.Text = "Logout";
+            this.logoutBtn.UseVisualStyleBackColor = true;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
             // 
-            // button1
+            // orderList
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 150);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 50);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Profile";
-            this.button1.UseVisualStyleBackColor = true;
+            this.orderList.Dock = System.Windows.Forms.DockStyle.Top;
+            this.orderList.FlatAppearance.BorderSize = 0;
+            this.orderList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.orderList.ForeColor = System.Drawing.Color.White;
+            this.orderList.Location = new System.Drawing.Point(0, 150);
+            this.orderList.Name = "orderList";
+            this.orderList.Size = new System.Drawing.Size(200, 50);
+            this.orderList.TabIndex = 3;
+            this.orderList.Text = "Order List";
+            this.orderList.UseVisualStyleBackColor = true;
+            this.orderList.Click += new System.EventHandler(this.orderList_Click);
             // 
-            // btnProfile
+            // btnReview
             // 
-            this.btnProfile.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnProfile.FlatAppearance.BorderSize = 0;
-            this.btnProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProfile.ForeColor = System.Drawing.Color.White;
-            this.btnProfile.Location = new System.Drawing.Point(0, 100);
-            this.btnProfile.Name = "btnProfile";
-            this.btnProfile.Size = new System.Drawing.Size(200, 50);
-            this.btnProfile.TabIndex = 2;
-            this.btnProfile.Text = "Profile";
-            this.btnProfile.UseVisualStyleBackColor = true;
-            this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
+            this.btnReview.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReview.FlatAppearance.BorderSize = 0;
+            this.btnReview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReview.ForeColor = System.Drawing.Color.White;
+            this.btnReview.Location = new System.Drawing.Point(0, 100);
+            this.btnReview.Name = "btnReview";
+            this.btnReview.Size = new System.Drawing.Size(200, 50);
+            this.btnReview.TabIndex = 2;
+            this.btnReview.Text = "Review Section";
+            this.btnReview.UseVisualStyleBackColor = true;
+            this.btnReview.Click += new System.EventHandler(this.btnProfile_Click);
             // 
             // btnPerfume
             // 
@@ -160,8 +162,8 @@
 
         }
 
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button logoutBtn;
+        private System.Windows.Forms.Button orderList;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
     }

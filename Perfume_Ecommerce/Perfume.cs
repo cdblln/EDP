@@ -147,14 +147,13 @@ namespace Register
             try
             {
                 connection.Open();
-                string query = @"INSERT INTO perfumes (perfume_name, brand_id, category_id, price, quantity)
-                                 VALUES (@Name, @BrandId, @CategoryId, @Price, @Quantity)";
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@Name", perfumeNameTextbox.Text);
-                cmd.Parameters.AddWithValue("@BrandId", ((KeyValuePair<int, string>)brand.SelectedItem).Key);
-                cmd.Parameters.AddWithValue("@CategoryId", ((KeyValuePair<int, string>)categories.SelectedItem).Key);
-                cmd.Parameters.AddWithValue("@Price", priceTextbox.Text);
-                cmd.Parameters.AddWithValue("@Quantity", quantityTextbox.Text);
+                MySqlCommand cmd = new MySqlCommand("AddPerfume", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@p_perfume_name", perfumeNameTextbox.Text);
+                cmd.Parameters.AddWithValue("@p_brand_id", ((KeyValuePair<int, string>)brand.SelectedItem).Key);
+                cmd.Parameters.AddWithValue("@p_category_id", ((KeyValuePair<int, string>)categories.SelectedItem).Key);
+                cmd.Parameters.AddWithValue("@p_price", decimal.Parse(priceTextbox.Text));
+                cmd.Parameters.AddWithValue("@p_quantity", int.Parse(quantityTextbox.Text));
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Perfume has been successfully added.", "Add Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -171,6 +170,7 @@ namespace Register
             }
         }
 
+
         private void editPerfumeButton_Click(object sender, EventArgs e)
         {
             if (perfumeDataGrid.SelectedRows.Count == 0)
@@ -185,16 +185,14 @@ namespace Register
             try
             {
                 connection.Open();
-                string query = @"UPDATE perfumes 
-                                 SET perfume_name = @Name, brand_id = @BrandId, category_id = @CategoryId, price = @Price, quantity = @Quantity
-                                 WHERE perfume_id = @Id";
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@Name", perfumeNameTextbox.Text);
-                cmd.Parameters.AddWithValue("@BrandId", ((KeyValuePair<int, string>)brand.SelectedItem).Key);
-                cmd.Parameters.AddWithValue("@CategoryId", ((KeyValuePair<int, string>)categories.SelectedItem).Key);
-                cmd.Parameters.AddWithValue("@Price", priceTextbox.Text);
-                cmd.Parameters.AddWithValue("@Quantity", quantityTextbox.Text);
-                cmd.Parameters.AddWithValue("@Id", perfumeId);
+                MySqlCommand cmd = new MySqlCommand("UpdatePerfume", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@p_perfume_id", perfumeId);
+                cmd.Parameters.AddWithValue("@p_perfume_name", perfumeNameTextbox.Text);
+                cmd.Parameters.AddWithValue("@p_brand_id", ((KeyValuePair<int, string>)brand.SelectedItem).Key);
+                cmd.Parameters.AddWithValue("@p_category_id", ((KeyValuePair<int, string>)categories.SelectedItem).Key);
+                cmd.Parameters.AddWithValue("@p_price", decimal.Parse(priceTextbox.Text));
+                cmd.Parameters.AddWithValue("@p_quantity", int.Parse(quantityTextbox.Text));
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Perfume has been successfully updated.", "Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -210,6 +208,7 @@ namespace Register
                 connection.Close();
             }
         }
+
 
         private void deletePerfumeButton_Click(object sender, EventArgs e)
         {
@@ -227,9 +226,9 @@ namespace Register
                 try
                 {
                     connection.Open();
-                    string query = "DELETE FROM perfumes WHERE perfume_id = @Id";
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    cmd.Parameters.AddWithValue("@Id", perfumeId);
+                    MySqlCommand cmd = new MySqlCommand("DeletePerfume", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@p_perfume_id", perfumeId);
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Perfume has been successfully deleted.", "Delete Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -246,6 +245,7 @@ namespace Register
                 }
             }
         }
+
 
         private void perfumeDataGrid_SelectionChanged(object sender, EventArgs e)
         {
