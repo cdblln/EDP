@@ -274,14 +274,14 @@ namespace Register
         {
             try
             {
-                // Navigate to project root
-                string currentDir = AppDomain.CurrentDomain.BaseDirectory;
-                string projectRoot = Directory.GetParent(currentDir).Parent.Parent.Parent.FullName;
+                // Save to user's Documents folder
+                string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
+                // Add timestamp to filename
                 string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                string fileName = $"PerfumesExport_{timestamp}.csv";
+                string fileName = $"PerfumeExport_{timestamp}.csv";
 
-                string filePath = Path.Combine(projectRoot, fileName);
+                string filePath = Path.Combine(documentsPath, fileName);
 
                 using (StreamWriter writer = new StreamWriter(filePath, false, Encoding.UTF8))
                 {
