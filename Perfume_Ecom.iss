@@ -2,25 +2,35 @@
 AppName=Perfume Ecommerce
 AppVersion=1.0
 DefaultDirName={pf}\PerfumeEcommerce
-DefaultGroupName=Perfume Ecommerce
-OutputDir=.
-OutputBaseFilename=PerfumeInstaller
+DefaultGroupName=PerfumeEcommerce
+OutputDir=C:\Users\CD\source\repos\cdblln\EDP\
+OutputBaseFilename=PerfumeEcommerceInstaller
 Compression=lzma
 SolidCompression=yes
 
+[Dirs]
+Name: "{app}"; 
+
 [Files]
-; Main executable
+; Main EXE
 Source: "C:\Users\CD\source\repos\cdblln\EDP\Perfume_Ecommerce\bin\Debug\EDP.exe"; DestDir: "{app}"; Flags: ignoreversion
 
-; DLL dependencies (you may include more if your app needs them)
-Source: "C:\Users\CD\source\repos\cdblln\EDP\Perfume_Ecommerce\bin\Debug\MySql.Data.dll"; DestDir: "{app}"; Flags: ignoreversion
+; All DLLs
+Source: "C:\Users\CD\source\repos\cdblln\EDP\Perfume_Ecommerce\bin\Debug\*.dll"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 
-; Your exported SQL file
+; SQL file
 Source: "C:\Users\CD\source\repos\cdblln\EDP\Perfume_Ecommerce\perfume_ecommerce_Database.sql"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\Perfume Ecommerce"; Filename: "{app}\Perfume_Ecommerce.exe"
-Name: "{group}\Uninstall Perfume Ecommerce"; Filename: "{uninstallexe}"
+; Shortcut to the EXE
+Name: "{group}\Perfume Ecommerce"; Filename: "{app}\EDP.exe"
+
+; Optional desktop shortcut
+Name: "{commondesktop}\Perfume Ecommerce"; Filename: "{app}\EDP.exe"; Tasks: desktopicon
+
+[Tasks]
+Name: "desktopicon"; Description: "Create a &desktop shortcut"; GroupDescription: "Additional icons:"
 
 [Run]
-Filename: "{app}\Perfume_Ecommerce.exe"; Description: "Launch Perfume Ecommerce"; Flags: nowait postinstall skipifsilent
+; Run the correct EXE (EDP.exe) after installation
+Filename: "{app}\EDP.exe"; Flags: nowait postinstall skipifsilent
